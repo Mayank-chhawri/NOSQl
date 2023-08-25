@@ -1,0 +1,468 @@
+test> use Company
+switched to db Company
+Company> db.createCollection("Employee")
+{ ok: 1 }
+Company> db.Employee.insertMany([
+...     {
+...         "emono":111,
+...         "ename":"Deepali Vaidaya",
+...         "sal":40000.00,
+...         "dept":{
+...             "deptno":12,
+...             "dname":"Hr",
+...             "dloc":"Mumbai",
+...         },
+...         "Desg":"Analyst",
+...         "mgr":{
+...             "name":"Satish",
+...             "num":111},
+...             "project":[
+...                 {
+...                     "name":"Project-1",
+...                     "Hrs":4
+...                 },
+...                 {
+...                     "name":"Project-2",
+...                     "Hrs":4
+...                 }
+...             ]
+...         },
+...
+...         {
+...             "emono":112,
+...             "ename":"Mayank Chawwri",
+...             "sal":45000.00,
+...             "dept":{
+...                 "deptno":13,
+...                 "dname":"Hr",
+...                 "dloc":"Delhi",
+...             },
+...             "Desg":"Analyst",
+...             "mgr":{
+...                 "name":"Vivek",
+...                 "num":112},
+...                 "project":[
+...                     {
+...                         "name":"Project-3",
+...                         "Hrs":6
+...                     },
+...                     {
+...                         "name":"Project-4",
+...                         "Hrs":6
+...                     }
+...                 ]
+...             },
+...
+...             {
+...                 "emono":113,
+...                 "ename":"Deepak Yadav",
+...                 "sal":50000.00,
+...                 "dept":{
+...                     "deptno":14,
+...                     "dname":"Hr",
+...                     "dloc":"Gurgaon",
+...                 },
+...                 "Desg":"Analyst",
+...                 "mgr":{
+...                     "name":"Satish",
+...                     "num":111},
+...                     "project":[
+...                         {
+...                             "name":"Project-1",
+...                             "Hrs":4
+...                         },
+...                         {
+...                             "name":"Project-2",
+...                             "Hrs":4
+...                         }
+...                     ]
+...                 },
+...                 {
+...                     "emono":114,
+...                     "ename":"Ankit Tiwari",
+...                     "sal":35000.00,
+...                     "dept":{
+...                         "deptno":12,
+...                         "dname":"Hr",
+...                         "dloc":"UP",
+...                     },
+...                     "Desg":"Analyst",
+...                     "mgr":{
+...                         "name":"Vicky",
+...                         "num":114},
+...                         "project":[
+...                             {
+...                                 "name":"Project-7",
+...                                 "Hrs":4
+...                             },
+...                             {
+...                                 "name":"Project-8",
+...                                 "Hrs":4
+...                             }
+...                         ]
+...                     },
+...
+...                     {
+...                         "emono":115,
+...                         "ename":"Aman Yadav",
+...                         "sal":40000.00,
+...                         "dept":{
+...                             "deptno":12,
+...                             "dname":"Hr",
+...                             "dloc":"Mumbai",
+...                         },
+...                         "Desg":"Analyst",
+...                         "mgr":{
+...                             "name":"Vicky",
+...                             "num":115},
+...                             "project":[
+...                                 {
+...                                     "name":"Project-10",
+...                                     "Hrs":5
+...                                 },
+...                                 {
+...                                     "name":"Project-11",
+...                                     "Hrs":5
+...                                 }
+...                             ]
+...                         },
+...
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64e626ce9a70b411ad517630"),
+    '1': ObjectId("64e626ce9a70b411ad517631"),
+    '2': ObjectId("64e626ce9a70b411ad517632"),
+    '3': ObjectId("64e626ce9a70b411ad517633"),
+    '4': ObjectId("64e626ce9a70b411ad517634")
+  }
+}
+
+
+/*Question 1*/
+
+Company> db.Employee.updateOne({Desg:"Clerk"},{$set:{Desg:"AO"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Company> db.Employee.updateMany({Desg:"Clerk"},{$set:{Desg:"AO"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Company> db.Employee.find();
+[
+  {
+    _id: ObjectId("64e626ce9a70b411ad517630"),
+    emono: 111,
+    ename: 'Deepali Vaidaya',
+    sal: 40000,
+    dept: { deptno: 12, dname: 'Hr', dloc: 'Mumbai' },
+    Desg: 'Analyst',
+    mgr: { name: 'Satish', num: 111 },
+    project: [ { name: 'Project-1', Hrs: 4 }, { name: 'Project-2', Hrs: 4 } ]
+  },
+  {
+    _id: ObjectId("64e626ce9a70b411ad517631"),
+    emono: 112,
+    ename: 'Mayank Chawwri',
+    sal: 45000,
+    dept: { deptno: 13, dname: 'Hr', dloc: 'Delhi' },
+    Desg: 'Analyst',
+    mgr: { name: 'Vivek', num: 112 },
+    project: [ { name: 'Project-3', Hrs: 6 }, { name: 'Project-4', Hrs: 6 } ]
+  },
+  {
+    _id: ObjectId("64e626ce9a70b411ad517632"),
+    emono: 113,
+    ename: 'Deepak Yadav',
+    sal: 50000,
+    dept: { deptno: 14, dname: 'Hr', dloc: 'Gurgaon' },
+    Desg: 'AO',
+    mgr: { name: 'Satish', num: 111 },
+    project: [ { name: 'Project-1', Hrs: 4 }, { name: 'Project-2', Hrs: 4 } ]
+  },
+  {
+    _id: ObjectId("64e626ce9a70b411ad517633"),
+    emono: 114,
+    ename: 'Ankit Tiwari',
+    sal: 35000,
+    dept: { deptno: 12, dname: 'Hr', dloc: 'UP' },
+    Desg: 'Analyst',
+    mgr: { name: 'Vicky', num: 114 },
+    project: [ { name: 'Project-7', Hrs: 4 }, { name: 'Project-8', Hrs: 4 } ]
+  },
+  {
+    _id: ObjectId("64e626ce9a70b411ad517634"),
+    emono: 115,
+    ename: 'Aman Yadav',
+    sal: 40000,
+    dept: { deptno: 12, dname: 'Hr', dloc: 'Mumbai' },
+    Desg: 'AO',
+    mgr: { name: 'Vicky', num: 115 },
+    project: [ { name: 'Project-10', Hrs: 5 }, { name: 'Project-11', Hrs: 5 } ]
+  }
+]
+
+/* Question 2*/
+Company> db.Employee.updateMany({Desg:"Analyst","project.name":"Project-1"},{$set:{"project.$.Hrs":5}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+/* Question 3 */
+db.Employee.updateMany({ename:{$regex:/^Deep/}},{$push:{project:{name:"Project-3", Hrs:2}}},{$push:{project:{name:"Project-4",Hrs:2}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+Company> db.Employee.updateMany({ename:{$regex:/^Deep/}},{$push:{project:{name:"Project-4",Hrs:2}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+/* Question 4 */
+
+Company> db.Employee.updateMany({},[{$set:{Bonus:{$cond:{if:{$gte:["$sal",50000]},then:2000,else:{$cond:{if:{$gte:["$sal",30000]},then:1500,else:1000}}}}}}]);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+/* Question 5 */
+
+Company> db.Employee.updateMany({"mgr.name":"Satish"},{$set:{"mgr.name":"Tushar", "mgr.num":3333}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+/* Question 6 */
+Company> db.Employee.updateMany({"dept.dname":"Purchase"},{$inc:{sal:15000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+
+/* Question 7*/
+Company> db.Employee.updateMany({"project.name":"Project-2"},{$inc:{"project.$.Hrs":-2}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+/* Question 8*/
+Company> db.Employee.updateMany({"project.name":"Project-2","project.Hrs":4},{$pull:{project:{name:"Project-2"}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+/*Ouestion 9*/
+
+Company> db.Employee.updateMany({sal:{$lt:10000}},{$set:{sal:10000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+/* Question 10*/
+
+}
+Company> db.Employee.updateMany({$or:[{Bonus:{$lt:2000}},{sal:{$lt:20000}},{"dept.dname":"Sales"}]},{$inc:{Bonus:500}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+/* Question 11*/
+Company> db.Employee.updateMany({$or:[{Desg:"Analyst"},{sal:{$in:[30000,33000,35000]}}]},{$push:{project:{$each:[{name:"Project-3",Hrs:0},{name:"Project-2",Hrs:0}],$position:2}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+
+/* Question 12*/
+Company> db.Employee.updateMany({"dept.dname":"Hr","dept.dloc":"Mumbai"},{$pop:{project:1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+/* Question 13*/
+Company> db.Employee.updateMany({"project.name":"Project-1","project.Hrs":4},{$set:{Desg:"Senier Programmer"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+/* Question 14*/
+
+db.Employee.updateMany({$or:[{"mgr.name":"Revati"},{"mgr.name":"Rajan"}]}, {$push:{Hobbies:["Cricket", "Tennis"]}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+/* Question 15*/
+Company> db.Employee.updateMany({$or:[{"project.name":"Project-4","project.Hrs":3},{"project.name":"Project-3","project.Hrs":4}]},{$addToSet:{Skillset:{$each:["Html","Java"]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+/* Question 16*/
+
+Company> db.Employee.updateMany({$and:[{ename:{$regex:'^R|^P'}},{ename:{$regex:'s$|j$'}}]}, {$push:{Hobbies:{$each:["Blogging"],$position:2}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+/* Question 17*/
+Company> db.Employee.updateMany({$or:[{"project.name":"Project-2"},{"project.name":"Project-3"},{"projecty.name":"Project-1"}]},{$inc:{sal:10000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+
+Company> db.Employee.updateMany({"dept.dloc":"Mumbai"},{$inc:{Bonus:-1000, sal:1000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+
+/* Question 18*/
+
+db.Employee.deleteMany({"project.name":"Project-1"});
+
+
+/* Question 19*/
+db.Employee.replaceOne({ename:"Deepak"},{"emono": 123, "ename": "New Employee", "sal": 50000, "dept": { "deptno": 10, "dname": "IT", "dloc": "Bangalore" }, "Desg": "Developer", "mgr": { "name": "Rajan", "num": 456 }, "project": [ { "name": "Project-5", "Hrs": 6 } ] });
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+/* Question 20*/
+Company> db.Employee.updateMany({Skill:"Python"},{$set:{"Skill.$":"Python 3.8"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+/* Question 21*/
+Company> db.Employee.updateMany({"dept.dloc":"Pune"},{$push:{Skillset:{$each:["MongoDB","Pearl" ]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+/* Question 22*/
+Company> db.Employee.updateMany({"project.name":{$in:["Project-1","Project-2"]}},{$pop:{Hobbies:-1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+/* Question 24*/
+Company> db.Employee.updateMany({Skillset:{$in:["Pearl","Python"]}},{$push:{project:{$each:[{name:"Project-2", Hrs:0},{name:"Project-1", Hrs:0}]}}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+/* Question 25*/
+
+
+Company> db.Employee.updateMany({"project.name":"Project-1","project.Hrs":{$lt:6}},{$set:{"project.$.Hrs":6}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
